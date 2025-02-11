@@ -14,11 +14,9 @@
         android:allowBackup="true"
         android:enableOnBackInvokedCallback="true"
         android:extractNativeLibs="true"
-        android:fullBackupContent="@xml/backup_descriptor"
         android:fullBackupOnly="true"
         android:hasFragileUserData="true"
-        android:supportsRtl="true"
-        tools:replace="android:fullBackupContent">
+        android:supportsRtl="true">
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.workmanager-init"

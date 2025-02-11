@@ -297,7 +297,7 @@ object CanPost {
 
         // 启动重试任务
         handler.post(retryRunnable)
-        postAdValue( adValue)
+        postAdValue(adValue)
 
     }
 
@@ -384,7 +384,7 @@ object CanPost {
     }
 
 
-    private fun postAdValue( adValue: TPAdInfo) {
+    private fun postAdValue(adValue: TPAdInfo) {
         val ecmVVVV = try {
             adValue.ecpmPrecision.toDouble() / 1000.0
         } catch (e: NumberFormatException) {
@@ -459,7 +459,9 @@ object CanPost {
             return
         }
         val instalTime = ShowService.getInstallTimeDataFun()
-        postPointDataWithHandler(true, "first_start", "time", instalTime)
+        if (!ShowService.isH5State) {
+            postPointDataWithHandler(true, "first_start", "time", instalTime)
+        }
         SPUtils.getInstance(febApp).put(KeyContent.FIRST_EXTERNAL_POINT, true)
     }
 

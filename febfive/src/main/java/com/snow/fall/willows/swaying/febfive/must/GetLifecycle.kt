@@ -35,7 +35,7 @@ class GetLifecycle : Application.ActivityLifecycleCallbacks {
             return
         }
         //TODO
-        if (activity.javaClass.name.contains("com.walking.flames.under.street.ffsd.a.StartAAA")) {
+        if (activity.javaClass.name.contains("com.jgaodl.drinks.waters.days.happys.xy.MainActivity")) {
             KeyContent.showLog("onActivityStarted-name=${activity.javaClass.name}")
             val anTime = ShowService.getInstallTimeDataFun()
             CanPost.postPointDataWithHandler(false, "session_front", "time", anTime)

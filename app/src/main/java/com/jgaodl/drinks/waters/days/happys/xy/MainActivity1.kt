@@ -26,7 +26,7 @@ import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity1 : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -52,9 +52,9 @@ class MainActivity : AppCompatActivity() {
 
             val isFirst = Local.getIsFirst()
             if (isFirst) {
-                startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                startActivity(Intent(this@MainActivity1, HomeActivity::class.java))
             } else {
-                startActivity(Intent(this@MainActivity, StartActivity::class.java))
+                startActivity(Intent(this@MainActivity1, StartActivity::class.java))
             }
 
         }
@@ -143,9 +143,9 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToMainActivity() {
         val isFirst = Local.getIsFirst()
         if (isFirst) {
-            startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+            startActivity(Intent(this@MainActivity1, HomeActivity::class.java))
         } else {
-            startActivity(Intent(this@MainActivity, StartActivity::class.java))
+            startActivity(Intent(this@MainActivity1, StartActivity::class.java))
         }
         finish()
     }

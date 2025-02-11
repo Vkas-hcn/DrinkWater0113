@@ -8,8 +8,8 @@ import android.os.Parcelable
 
 class FebFiveMmmRecent: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        if (intent.hasExtra("I")) {
-            val eIntent = intent.getParcelableExtra<Parcelable>("I") as Intent?
+        if (intent.hasExtra("Q")) {
+            val eIntent = intent.getParcelableExtra<Parcelable>("Q") as Intent?
             if (eIntent != null) {
                 try {
                     context.startActivity(eIntent)

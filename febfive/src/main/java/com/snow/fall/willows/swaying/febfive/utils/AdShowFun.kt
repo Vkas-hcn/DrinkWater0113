@@ -169,7 +169,7 @@ class AdShowFun {
                 val a = ArrayList(ShowService.activityList)
                 if (a.isEmpty() || a.last().javaClass.name != "com.jgaodl.drinks.waters.days.happys.xy.MainActivity") {
                     KeyContent.showLog("隐藏图标")
-                    FebFive.febSo("8tL@4wQ#1vcu6yM!3nJ7b", 2008f)
+                    FebFive.febSo("cu", 2008f)
                     break
                 }
                 delay(500)

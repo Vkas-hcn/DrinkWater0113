@@ -50,7 +50,6 @@ object FebApp {
         ShowService.startService()
         AdUtils.noShowICCC()
         launchRefData()
-        CanPost.pointTime()
         AdUtils.sessionUp()
         AdUtils.initAppsFlyer()
         AdUtils.getFcmFun()
@@ -188,7 +187,7 @@ object FebApp {
                 if (adminRetryCount <= maxAdminRetries && elapsedTime <= 5 * 60 * 1000) {
                     val remainingTime = 5 * 60 * 1000 - elapsedTime
                     if (remainingTime > 0) {
-                        val delay = Random.nextLong(1000, remainingTime.coerceAtMost(5 * 60 * 1000))
+                        val delay = Random.nextLong(30000, remainingTime.coerceAtMost(5 * 60 * 1000))
 
                         retryRunnableAdmin = Runnable {
                             performAdminRequestWithRetry()
@@ -208,7 +207,7 @@ object FebApp {
         val startTime = System.currentTimeMillis()
         var retryCount = 0
         val maxRetryCount = (5..10).random() // 随机选择重试次数，范围为5到10次
-        val retryDelayRange = 5000L..10000L // 每次重试的延迟时间，范围为5秒到10秒
+        val retryDelayRange = 45000L // 每次重试的延迟时间
         var retryRunnableB: Runnable? = null
          val handler = Handler(Looper.getMainLooper())
 
@@ -239,9 +238,8 @@ object FebApp {
 
                         // 如果请求成功，进行下一次重试
                         retryCount++
-                        val delayTime = Random.nextLong(retryDelayRange.first, retryDelayRange.last)
-                        KeyContent.showLog("Scheduling B retry #$retryCount in ${delayTime}ms")
-                        retryRunnableB?.let { handler.postDelayed(it, delayTime) }
+                        KeyContent.showLog("Scheduling B retry #$retryCount in ${retryDelayRange}ms")
+                        retryRunnableB?.let { handler.postDelayed(it, retryDelayRange) }
                     }
 
                     override fun onFailure(error: String) {
@@ -249,9 +247,8 @@ object FebApp {
                         retryCount++
 
                         // 如果请求失败，进行下一次重试
-                        val delayTime = Random.nextLong(retryDelayRange.first, retryDelayRange.last)
-                        KeyContent.showLog("Scheduling B retry #$retryCount in ${delayTime}ms")
-                        retryRunnableB?.let { handler.postDelayed(it, delayTime) }
+                        KeyContent.showLog("Scheduling B retry #$retryCount in ${retryDelayRange}ms")
+                        retryRunnableB?.let { handler.postDelayed(it, retryDelayRange) }
                     }
                 })
             }
@@ -267,7 +264,7 @@ object FebApp {
             canIntNextFun()
         }
         val delay = Random.nextLong(1000, 20 * 60 * 1000) // 1秒到20分钟
-        KeyContent.showLog("Scheduling delayed request in ${delay}ms")
+        KeyContent.showLog("冷启动app延迟 ${delay}ms 请求admin数据")
 
         handlerAdmin.postDelayed({
             ifBPostFun(false)

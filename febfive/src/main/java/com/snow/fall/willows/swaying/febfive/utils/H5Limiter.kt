@@ -33,7 +33,6 @@ class H5Limiter {
         val prefs = getSharedPrefs()
         // 检查每日展示限制
         if (!checkDailyShowLimit(prefs)) {
-            CanPost.getLiMitData()
             return false
         }
         // 检查小时限制

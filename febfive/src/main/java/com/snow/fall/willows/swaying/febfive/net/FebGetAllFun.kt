@@ -67,7 +67,7 @@ object FebGetAllFun {
             .post(requestBody)
             .addHeader("timestamp", timestamp)
             .build()
-
+        CanPost.postPointDataWithHandler(false, "reqadmin")
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 KeyContent.showLog("admin----Request failed: ${e.message}")
@@ -114,7 +114,6 @@ object FebGetAllFun {
                 }
             }
         })
-        CanPost.postPointDataWithHandler(false, "reqadmin")
 
     }
 
