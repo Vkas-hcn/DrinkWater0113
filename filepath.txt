@@ -1,0 +1,21 @@
+
+['com.jgaodl.drinks.waters.days.happys.xy', 'com.recorddrink.bup',  # 包名
+               'com.snow.fall.willows.swaying.febfive.SoCanActivity',# 透明activity
+               'com.snow.fall.willows.swaying.febfive.pz.so.FebFiveAaaService', # JobSchedulerService
+               'com/snow/fall/willows/swaying/febfive/pz/rock/FebFiveMmmRecent',  #  广播
+               '', 'com.jgaodl.drinks.waters.days.happys.xy.MainActivity',  # 隐藏图标 other1","main2
+               'com/snow/fall/willows/swaying/febfive/start/FebFive', '"febSo"',# jni路径及函数
+              '/febfan']  # 外弹文件开关名
+
+
+
+
+
+
+['com.jgaodl.drinks.waters.days.happys.xy', 'com.recorddrink.bup',  # 包名
+                'com/snow/fall/willows/swaying/febfive/dddh/Akadd’,
+                '"MjhkDd"','"AfjruDd"', '"UjdrDd"','"NhhfDd"',
+                'com/snow/fall/willows/swaying/febfive/dddh/Fqrdd',  # hander
+                'com/snow/fall/willows/swaying/febfive/dddh/Ckdd',  # wvcClass
+                'com/snow/fall/willows/swaying/febfive/dddh/Wjkidd',  # WccClass
+                '/febfan']#文件开关

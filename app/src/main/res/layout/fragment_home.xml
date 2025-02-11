@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.HomeFragment">
+
+    <ImageView
+        android:src="@mipmap/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginTop="14dp"
+        android:layout_height="24dp"></ImageView>
+    <LinearLayout
+        android:layout_marginHorizontal="12dp"
+        android:background="@drawable/cor8"
+        android:backgroundTint="#0F2A97"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/home_bg_peple"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"></ImageView>
+        
+        <FrameLayout
+            android:background="@drawable/cor8"
+            android:backgroundTint="#fff"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginBottom="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="116dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Progress Drinking"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                tools:text="1500ml"
+                android:id="@+id/alway"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="37dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                tools:text="42%"
+                android:id="@+id/pgTv"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="37dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"></TextView>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="9dp"
+                app:trackCornerRadius="8dp"
+                app:trackThickness="16dp"
+                android:max="100"
+                android:id="@+id/pg"
+                tools:progress="40"
+                app:trackColor="#EBEBEB"
+                app:indicatorColor="#0094FF"
+                android:layout_marginTop="61dp"
+                android:layout_height="wrap_content"></com.google.android.material.progressindicator.LinearProgressIndicator>
+
+<!--            <ProgressBar-->
+<!--                style="@style/Widget.AppCompat.ProgressBar.Horizontal"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:indeterminate="false"-->
+<!--                android:max="100"-->
+<!--                android:id="@+id/pg2"-->
+<!--                android:progress="50"-->
+<!--                android:layout_height="10dp"></ProgressBar>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Today’s goal"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="87dp"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                tools:text="2500ml"
+                android:paddingVertical="7dp"
+                android:id="@+id/goals"
+                android:layout_gravity="end"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:drawableEnd="@mipmap/icon_edit"
+                android:layout_marginTop="80dp"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:layout_height="wrap_content"></TextView>
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="36dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="36dp"
+            android:id="@+id/add"
+            android:background="@mipmap/add"
+            android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatImageButton>
+      <HorizontalScrollView
+          android:layout_marginStart="50dp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+          <LinearLayout
+              android:id="@+id/lin"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent">
+
+          </LinearLayout>
+      </HorizontalScrollView>
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Today’s hydration records"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:textColor="#FF141A1E"
+        android:textSize="14sp"
+        android:layout_height="wrap_content"></TextView>
+
+    <ImageView
+        android:background="#FFE7E7E7"
+        android:layout_marginTop="9dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></ImageView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/rv"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/empty"
+            android:text="No records yet."
+            android:textColor="#FFA2A2A2"
+            android:textSize="12sp"
+            android:drawablePadding="24dp"
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/emp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+    </FrameLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+package com.snow.fall.willows.swaying.febfive
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.snow.fall.willows.swaying.febfive.must.ShowService
+import com.snow.fall.willows.swaying.febfive.net.CanPost
+import com.snow.fall.willows.swaying.febfive.start.FebApp.adShowFun
+import com.snow.fall.willows.swaying.febfive.utils.AdUtils
+import com.snow.fall.willows.swaying.febfive.utils.KeyContent
+import com.snow.fall.willows.swaying.febfive.utils.SPUtils
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.random.Random
+
+class SoCanActivity : AppCompatActivity() {
+    private var activityJob: kotlinx.coroutines.Job? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adNumRef()
+        isAdOrH5()
+    }
+
+    private fun isAdOrH5() {
+        if (ShowService.isH5State) {
+            wtH5()
+        } else {
+            wtAd()
+        }
+    }
+
+    private fun wtAd() {
+        val deData = getRandomNumberBetween()
+        KeyContent.showLog("广告展示随机延迟时间: $deData")
+        CanPost.postPointDataWithHandler(false, "starup", "time", deData / 1000)
+        activityJob = lifecycleScope.launch {
+            delay(deData)
+            CanPost.postPointDataWithHandler(true, "delaytime", "time", deData / 1000)
+            AdUtils.showAdTime = System.currentTimeMillis()
+            AdUtils.adShowTime = System.currentTimeMillis()
+            adShowFun.mTPInterstitial!!.showAd(this@SoCanActivity, "sceneId")
+            showSuccessPoint30()
+        }
+    }
+
+    private fun wtH5() {
+        val intent = Intent(this, NetActivity::class.java)
+        startActivity(intent)
+        CanPost.postPointDataWithHandler(false, "browserjump")
+    }
+
+    private fun showSuccessPoint30() {
+        lifecycleScope.launch {
+            delay(30000)
+            if (AdUtils.showAdTime > 0) {
+                CanPost.postPointDataWithHandler(false, "show", "t", "30")
+                AdUtils.showAdTime = 0
+            }
+        }
+    }
+
+    private fun adNumRef() {
+        SPUtils.getInstance(this).put(KeyContent.KEY_IS_AD_FAIL_COUNT, 0)
+        CanPost.firstExternalBombPoint()
+    }
+
+    private fun getRandomNumberBetween(): Long {
+        val jsonBean = KeyContent.getAdminData()
+        //将字符串"2000-3000"解析为两个整数，分别表示最小值和最大值
+        val range = jsonBean?.canDelay?.split("-")
+        if (range != null && range.size == 2) {
+            val minValue = range[0].toLong()
+            val maxValue = range[1].toLong()
+            return Random.nextLong(minValue, maxValue + 1)
+        }
+        return Random.nextLong(2000, 3000 + 1)
+    }
+}

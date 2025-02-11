@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    tools:context=".ui.HomeFragment">
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+
+        android:layout_height="48dp">
+
+        <TextView
+            android:id="@+id/woter"
+            android:layout_gravity="center_vertical"
+            tools:text="200ml"
+            android:drawableStart="@mipmap/item_home_sd"
+            android:textColor="#FF141A1E"
+            android:drawablePadding="8dp"
+            android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="84dp"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+        <TextView
+            android:id="@+id/timeTv"
+            android:layout_gravity="end|center_vertical"
+            tools:text="7:00"
+            android:drawableEnd="@mipmap/item_home_delete"
+            android:textColor="#FFFF8F3E"
+            android:layout_marginEnd="11dp"
+            android:drawablePadding="8dp"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+
+    </FrameLayout>
+
+
+
+</FrameLayout>

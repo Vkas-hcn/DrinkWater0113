@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="60dp"
+            android:tint="#FF262626"
+            android:id="@+id/back"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/back_white"
+            android:layout_height="match_parent"></androidx.appcompat.widget.AppCompatImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Result"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FF262626"
+            android:layout_height="wrap_content"></TextView>
+
+    </FrameLayout>
+
+    <ImageView
+        android:src="@mipmap/relt_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ImageView>
+
+
+    <TextView
+        android:id="@+id/relt"
+        android:layout_marginTop="36dp"
+        android:layout_width="wrap_content"
+        android:text="+200ML"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FF262626"
+        android:layout_height="wrap_content"></TextView>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="You’ve achieved "
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="#FFBABABA"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:id="@+id/pgTv"
+            android:layout_width="wrap_content"
+            tools:text="64%"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="#FF0094FF"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text=" of your goal,keep it up!"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="#FFBABABA"
+            android:layout_height="wrap_content"></TextView>
+    </LinearLayout>
+
+
+</LinearLayout>

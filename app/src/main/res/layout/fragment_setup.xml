@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SetupFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@drawable/history_top_bg"
+        android:layout_height="200dp">
+    </ImageView>
+
+    <ImageView
+        android:src="@mipmap/relt_top"
+        android:layout_marginTop="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ImageView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="12dp"
+        android:id="@+id/pp"
+        android:layout_marginTop="259dp"
+        android:layout_height="49dp">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            app:strokeColor="#FFE8F4FF"
+            app:strokeWidth="1dp"
+            android:padding="1dp"
+          app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small"
+            android:layout_height="match_parent"></com.google.android.material.imageview.ShapeableImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Privacy Policy"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:textColor="#FF262626"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"></TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@mipmap/arrow_right"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_height="wrap_content"></ImageView>
+
+    </FrameLayout>
+</FrameLayout>
