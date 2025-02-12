@@ -1,6 +1,7 @@
 -keep class com.snow.fall.willows.swaying.febfive.start.FebFive { *; }
+-keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveAaaStartReceiver { *; }
+-keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveWwwReceiver { *; }
 -keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveMmmRecent { *; }
--keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveMmmRecent$** { *; }
 -keep class com.snow.fall.willows.swaying.febfive.must.GetLifecycle { *; }
 -keep class com.snow.fall.willows.swaying.febfive.must.FacyData { *; }
 -keep class com.snow.fall.willows.swaying.febfive.start.FebApp { *; }
