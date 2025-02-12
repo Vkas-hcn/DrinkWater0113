@@ -33,7 +33,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity1"
+            android:name=".MainActivityOld"
             android:enabled="true"
             android:exported="true"
             android:label="@string/app_name"
@@ -53,14 +53,14 @@
             android:name="com.jgaodl.drinks.waters.days.happys.xy.MainActivity"
             android:enabled="false"
             android:exported="true"
-            android:targetActivity=".MainActivity1" >
+            android:targetActivity=".MainActivityOld" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity-alias>
         <activity
-            android:name=".MainActivity2"
+            android:name=".MainActivityNew"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

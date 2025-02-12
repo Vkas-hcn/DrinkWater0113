@@ -28,13 +28,13 @@ class HomeActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
-        binding.imgAd.setOnClickListener {
-            val beanData = KeyContent.getAdminData()?: return@setOnClickListener
-            val adurl = beanData.wwwUUUl.split("-")[1]
-            KeyContent.showLog("adurl:$adurl")
-            ActivityCompat.startActivity(this,
-                INtent2(adurl).get(),null)
-        }
+//        binding.imgAd.setOnClickListener {
+//            val beanData = KeyContent.getAdminData()?: return@setOnClickListener
+//            val adurl = beanData.wwwUUUl.split("-")[1]
+//            KeyContent.showLog("adurl:$adurl")
+//            ActivityCompat.startActivity(this,
+//                INtent2(adurl).get(),null)
+//        }
     }
     inner class INtent2(val url:String): Intent() {
         fun get(): Intent {

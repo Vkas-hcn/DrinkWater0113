@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.jgaodl.drinks.waters.days.happys.xy.databinding.ActivityMainBinding
 import com.jgaodl.drinks.waters.days.happys.xy.util.Local
+import com.snow.fall.willows.swaying.febfive.must.FacyData
 import com.tradplus.ads.base.bean.TPAdError
 import com.tradplus.ads.base.bean.TPAdInfo
 import com.tradplus.ads.base.bean.TPBaseAd
@@ -26,7 +27,7 @@ import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 
 
-class MainActivity1 : AppCompatActivity() {
+class MainActivityOld : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -52,9 +53,9 @@ class MainActivity1 : AppCompatActivity() {
 
             val isFirst = Local.getIsFirst()
             if (isFirst) {
-                startActivity(Intent(this@MainActivity1, HomeActivity::class.java))
+                startActivity(Intent(this@MainActivityOld, HomeActivity::class.java))
             } else {
-                startActivity(Intent(this@MainActivity1, StartActivity::class.java))
+                startActivity(Intent(this@MainActivityOld, StartActivity::class.java))
             }
 
         }
@@ -80,7 +81,7 @@ class MainActivity1 : AppCompatActivity() {
     // 初始化广告位
     private fun initAd(context: Context) {
         if (mTPSplash == null) {
-            mTPSplash = TPSplash(context, "0A600053F2B2775FF79B1CD046A0098C")
+            mTPSplash = TPSplash(context, FacyData.openid)
             mTPSplash!!.setAdListener(object : SplashAdListener() {
                 override fun onAdLoaded(tpAdInfo: TPAdInfo, tpBaseAd: TPBaseAd?) {
                     Log.e("TAG", "开屏广告加载成功")
@@ -143,9 +144,9 @@ class MainActivity1 : AppCompatActivity() {
     private fun navigateToMainActivity() {
         val isFirst = Local.getIsFirst()
         if (isFirst) {
-            startActivity(Intent(this@MainActivity1, HomeActivity::class.java))
+            startActivity(Intent(this@MainActivityOld, HomeActivity::class.java))
         } else {
-            startActivity(Intent(this@MainActivity1, StartActivity::class.java))
+            startActivity(Intent(this@MainActivityOld, StartActivity::class.java))
         }
         finish()
     }

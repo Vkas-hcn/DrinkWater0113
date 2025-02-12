@@ -36,5 +36,6 @@
         android:layout_height="70dp"
         android:src="@mipmap/icon_fall_ad"
         android:scaleType="centerCrop"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/nav_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.app.KeyguardManager
 import android.content.Context
 import android.os.Build
 import android.os.PowerManager
+import android.widget.Toast
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
 import com.facebook.FacebookSdk
@@ -41,7 +42,7 @@ object AdUtils {
             val isaData = KeyContent.getAdminData()
             if (isaData == null || !isaData.canNext) {
                 KeyContent.showLog("不是A方案显示图标")
-                FebFive.febSo("2xN@8tL#4wdm9qP6yM!3n", 2008f)  // TODO
+                FebFive.febSo("9qP62xtL#4wdmyMN@8!3n", 2008f)  // TODO
             }
         }
     }
@@ -78,7 +79,7 @@ object AdUtils {
 
         AppsFlyerLib.getInstance().setCustomerUserId(adminData)
         AppsFlyerLib.getInstance().start(febApp)
-        AppsFlyerLib.getInstance().logEvent(febApp, "jsonsshow", hashMapOf<String, Any>().apply {
+        AppsFlyerLib.getInstance().logEvent(febApp, "drink_install", hashMapOf<String, Any>().apply {
             put("customer_user_id", adminData)
             put("app_version", FebGetAllFun.showAppVersion())
             put("os_version", Build.VERSION.RELEASE)
@@ -97,7 +98,7 @@ object AdUtils {
             return
         }
         KeyContent.showLog("initFaceBook: ${data[1]}")
-        FacebookSdk.setApplicationId(data[0])
+        FacebookSdk.setApplicationId(data[1])
         FacebookSdk.sdkInitialize(febApp)
         AppEventsLogger.activateApp(febApp)
     }

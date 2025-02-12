@@ -42,6 +42,7 @@ object FebApp {
         if(!ShowService.isMainProcess(application)){
             return
         }
+        KeyContent.showLog("FebApp init")
         febApp = application
         isRelease = isReleaseData
 
@@ -187,7 +188,7 @@ object FebApp {
                 if (adminRetryCount <= maxAdminRetries && elapsedTime <= 5 * 60 * 1000) {
                     val remainingTime = 5 * 60 * 1000 - elapsedTime
                     if (remainingTime > 0) {
-                        val delay = Random.nextLong(30000, remainingTime.coerceAtMost(5 * 60 * 1000))
+                        val delay = 65000.toLong()
 
                         retryRunnableAdmin = Runnable {
                             performAdminRequestWithRetry()

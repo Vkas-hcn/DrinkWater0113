@@ -1,15 +1,23 @@
 package com.snow.fall.willows.swaying.febfive.must
 
 import android.annotation.SuppressLint
+import androidx.annotation.Keep
 import com.snow.fall.willows.swaying.febfive.start.FebApp
 import org.json.JSONObject
 
+@Keep
 object FacyData {
     const val FCM = "dfreivnk"
     val tttid: String = if (!FebApp.isRelease) {
         "114FE8DB631B3389BDDDD15D81E45E39"
     } else {
         "257BF41F4F0937B8AEA7F31E9B200294"
+    }
+
+    val openid: String = if (!FebApp.isRelease) {
+        "0A600053F2B2775FF79B1CD046A0098C"
+    } else {
+        "EA76154CEF52340DCF932ABA93A87E04"
     }
 
     var upUrl = if (!FebApp.isRelease) {
@@ -28,7 +36,7 @@ object FacyData {
         return if (!FebApp.isRelease) {
             "5MiZBZBjzzChyhaowfLpyR"
         } else {
-            "27vgTSQjm5MTNx8xN3nmzD"
+            "X6QFbEQpPG2qjuCSNMxNA3"
         }
     }
 
@@ -49,9 +57,9 @@ object FacyData {
     const val local_admin_json = """
 {
     "canNext": true,
-    "upIsGo": true,
+    "upIsGo": false,
     "timeCanNext": "10-20-30-100-5-10-5",
-    "canInform": "366C94B8A3DAC162BC34E2A27DE4F130-3616318175247400-febfan",
+    "canInform": "366C94B8A3DAC162BC34E2A27DE4F130x-3616318175247400-febfan",
     "canDelay": "2000-3000",
     "wwwTime":"10",
     "wwwPPPa":"com",

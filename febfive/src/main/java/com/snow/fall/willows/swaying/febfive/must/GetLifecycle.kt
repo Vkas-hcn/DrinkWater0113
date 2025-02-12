@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.os.Bundle
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import com.snow.fall.willows.swaying.febfive.SoCanActivity
 import com.snow.fall.willows.swaying.febfive.must.ShowService.KEY_IS_SERVICE
@@ -14,8 +15,9 @@ import com.snow.fall.willows.swaying.febfive.start.FebApp
 import com.snow.fall.willows.swaying.febfive.start.FebApp.febApp
 import com.snow.fall.willows.swaying.febfive.utils.KeyContent
 import com.snow.fall.willows.swaying.febfive.utils.SPUtils
+import org.checkerframework.checker.units.qual.K
 
-
+@Keep
 class GetLifecycle : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
@@ -34,9 +36,11 @@ class GetLifecycle : Application.ActivityLifecycleCallbacks {
         if (activity is SoCanActivity) {
             return
         }
+        KeyContent.showLog("onActivityStarted-name=${activity.javaClass.name}")
+
         //TODO
-        if (activity.javaClass.name.contains("com.jgaodl.drinks.waters.days.happys.xy.MainActivity")) {
-            KeyContent.showLog("onActivityStarted-name=${activity.javaClass.name}")
+        if (activity.javaClass.name.contains("com.jgaodl.drinks.waters.days.happys.xy.MainActivityOld")) {
+            KeyContent.showLog("onActivityStarted=${activity.javaClass.name}")
             val anTime = ShowService.getInstallTimeDataFun()
             CanPost.postPointDataWithHandler(false, "session_front", "time", anTime)
         }

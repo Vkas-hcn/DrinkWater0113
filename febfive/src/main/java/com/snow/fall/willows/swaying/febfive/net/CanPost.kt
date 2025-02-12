@@ -239,6 +239,7 @@ object CanPost {
                     // 延迟下一次重试
                     val delayTime = Random.nextLong(minDelay, maxDelay)
                     handler.postDelayed(this, delayTime)
+                    isLod = false
                 }
             }
         }
@@ -287,10 +288,9 @@ object CanPost {
                             }
                         })
                     }
-
-                    // 延迟下一次重试
                     val delayTime = Random.nextLong(minDelay, maxDelay)
-                    handler.postDelayed(this, delayTime)
+                    handler.postDelayed(retryRunnable!!, delayTime)
+                    isLod = false
                 }
             }
         }
@@ -340,7 +340,8 @@ object CanPost {
         // 创建重试逻辑的Runnable
         retryRunnable = object : Runnable {
             override fun run() {
-                if (!success && retryCount <= retriesNum) {
+                if (!success && retryCount < retriesNum) {
+                    KeyContent.showLog("Point-${name}-重试: $retryCount")
                     if (!isLod) {
                         isLod = true
                         FebGetAllFun.postPutData(data, object : FebGetAllFun.CallbackMy {
@@ -352,9 +353,6 @@ object CanPost {
 
                             override fun onFailure(error: String) {
                                 KeyContent.showLog("Point-${name}-请求失败: $error")
-                                if (retryCount >= maxRetries) {
-                                    KeyContent.showLog("Point-${name}-请求失败，达到最大重试次数: $maxRetries")
-                                }
                                 retryCount++
                             }
                         })
@@ -362,7 +360,9 @@ object CanPost {
 
                     // 延迟下一次重试
                     val delayTime = Random.nextLong(minDelay, maxDelay)
-                    handler.postDelayed(this, delayTime)
+                    KeyContent.showLog("Point-${name}-延迟下一次重试: $delayTime ms")
+                    handler.postDelayed(retryRunnable!!, delayTime)
+                    isLod = false
                 }
             }
         }
@@ -438,15 +438,6 @@ object CanPost {
     }
 
 
-    fun pointTime() {
-        CoroutineScope(Dispatchers.IO).launch {
-            while (true) {
-                postPointDataWithHandler(false, "session_up")
-                delay(1000 * 60 * 15)
-            }
-        }
-    }
-
     fun showsuccessPoint() {
         val time = (System.currentTimeMillis() - AdUtils.showAdTime) / 1000
         postPointDataWithHandler(false, "show", "t", time)
@@ -459,9 +450,7 @@ object CanPost {
             return
         }
         val instalTime = ShowService.getInstallTimeDataFun()
-        if (!ShowService.isH5State) {
-            postPointDataWithHandler(true, "first_start", "time", instalTime)
-        }
+        postPointDataWithHandler(true, "first_start", "time", instalTime)
         SPUtils.getInstance(febApp).put(KeyContent.FIRST_EXTERNAL_POINT, true)
     }
 

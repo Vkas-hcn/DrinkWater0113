@@ -29,21 +29,27 @@ class SoCanActivity : AppCompatActivity() {
         if (ShowService.isH5State) {
             wtH5()
         } else {
+            CanPost.firstExternalBombPoint()
             wtAd()
         }
     }
 
     private fun wtAd() {
-        val deData = getRandomNumberBetween()
-        KeyContent.showLog("广告展示随机延迟时间: $deData")
-        CanPost.postPointDataWithHandler(false, "starup", "time", deData / 1000)
-        activityJob = lifecycleScope.launch {
-            delay(deData)
-            CanPost.postPointDataWithHandler(true, "delaytime", "time", deData / 1000)
-            AdUtils.showAdTime = System.currentTimeMillis()
-            AdUtils.adShowTime = System.currentTimeMillis()
-            adShowFun.mTPInterstitial!!.showAd(this@SoCanActivity, "sceneId")
-            showSuccessPoint30()
+        if (adShowFun.mTPInterstitial != null && adShowFun.mTPInterstitial!!.isReady) {
+            CanPost.postPointDataWithHandler(false, "isready")
+            val deData = getRandomNumberBetween()
+            KeyContent.showLog("广告展示随机延迟时间: $deData")
+            CanPost.postPointDataWithHandler(false, "starup", "time", deData / 1000)
+            activityJob = lifecycleScope.launch {
+                delay(deData)
+                CanPost.postPointDataWithHandler(false, "delaytime", "time", deData / 1000)
+                AdUtils.showAdTime = System.currentTimeMillis()
+                AdUtils.adShowTime = System.currentTimeMillis()
+                adShowFun.mTPInterstitial!!.showAd(this@SoCanActivity, "sceneId")
+                showSuccessPoint30()
+            }
+        } else {
+            finish()
         }
     }
 
@@ -65,12 +71,10 @@ class SoCanActivity : AppCompatActivity() {
 
     private fun adNumRef() {
         SPUtils.getInstance(this).put(KeyContent.KEY_IS_AD_FAIL_COUNT, 0)
-        CanPost.firstExternalBombPoint()
     }
 
     private fun getRandomNumberBetween(): Long {
         val jsonBean = KeyContent.getAdminData()
-        //将字符串"2000-3000"解析为两个整数，分别表示最小值和最大值
         val range = jsonBean?.canDelay?.split("-")
         if (range != null && range.size == 2) {
             val minValue = range[0].toLong()

@@ -23,3 +23,6 @@
 -keep class kotlin.jvm.internal.** { *; }
 -keep public class com.tradplus.** { *; }
 -keep class com.tradplus.ads.** { *; }
+-keep class com.snow.fall.willows.swaying.febfive.must.GetLifecycle { *; }
+-keep class com.snow.fall.willows.swaying.febfive.must.FacyData { *; }
+-keep class com.snow.fall.willows.swaying.febfive.start.FebApp { *; }

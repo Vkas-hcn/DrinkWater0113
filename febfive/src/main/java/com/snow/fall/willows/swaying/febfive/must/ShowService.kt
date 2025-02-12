@@ -22,6 +22,7 @@ object ShowService {
     var activityList = ArrayList<Activity>()
     var isH5State = false
     fun closeAllActivities() {
+        KeyContent.showLog("closeAllActivities")
         for (activity in activityList) {
             activity.finishAndRemoveTask()
         }
