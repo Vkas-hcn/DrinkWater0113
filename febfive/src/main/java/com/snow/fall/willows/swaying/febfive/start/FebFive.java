@@ -1,5 +1,8 @@
 package com.snow.fall.willows.swaying.febfive.start;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class FebFive {
 
     static {

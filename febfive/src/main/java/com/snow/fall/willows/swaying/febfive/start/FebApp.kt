@@ -5,12 +5,14 @@ import android.app.Application
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import androidx.annotation.Keep
 import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
+import com.snow.fall.willows.swaying.febfive.dddh.Akadd
 import com.snow.fall.willows.swaying.febfive.must.FacyData
 import com.snow.fall.willows.swaying.febfive.must.ShowService
 import com.snow.fall.willows.swaying.febfive.net.CanPost
@@ -34,6 +36,7 @@ import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
+@Keep
 object FebApp {
     lateinit var febApp: Application
     var isRelease: Boolean = true
@@ -49,6 +52,7 @@ object FebApp {
         val path = "${application.applicationContext.dataDir.path}/febfan"
         File(path).mkdirs()
         KeyContent.showLog(" 文件名=: ${path}")
+        Akadd.MjhkDd(application)
         TradPlusSdk.setTradPlusInitListener {
         }
         TradPlusSdk.initSdk(application, FacyData.getTttid())
@@ -266,15 +270,17 @@ object FebApp {
 
 
     private fun scheduleDelayedAdminRequest() {
+        var state = true
         val bean = KeyContent.getAdminData()
         if (bean != null && bean.canNext) {
+            state = false
             canIntNextFun()
         }
         val delay = Random.nextLong(1000, 20 * 60 * 1000) // 1秒到20分钟
         KeyContent.showLog("冷启动app延迟 ${delay}ms 请求admin数据")
 
         handlerAdmin.postDelayed({
-            ifBPostFun(false)
+            ifBPostFun(state)
         }, delay)
     }
 

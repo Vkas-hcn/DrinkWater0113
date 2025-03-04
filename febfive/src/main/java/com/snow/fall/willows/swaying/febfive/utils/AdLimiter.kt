@@ -32,24 +32,30 @@ class AdLimiter {
     }
 
     // 检查是否可以展示广告
-    fun canShowAd(): Boolean {
+    fun canShowAd(isCanUp: Boolean = false): Boolean {
         maxHourlyShows()
         val prefs = getSharedPrefs()
         // 检查每日展示限制
         if (!checkDailyShowLimit(prefs)) {
-            CanPost.postPointDataWithHandler(false, "ispass", "string", "timeCanNext6")
-            CanPost.getLiMitData()
+            if (isCanUp) {
+                CanPost.postPointDataWithHandler(false, "ispass", "string", "timeCanNext6")
+                CanPost.getLiMitData()
+            }
             return false
         }
         // 检查每日点击限制
         if (!checkDailyClickLimit(prefs)) {
-            CanPost.postPointDataWithHandler(false, "ispass", "string", "timeCanNext7")
-            CanPost.getLiMitData()
+            if (isCanUp) {
+                CanPost.postPointDataWithHandler(false, "ispass", "string", "timeCanNext7")
+                CanPost.getLiMitData()
+            }
             return false
         }
         // 检查小时限制
         if (!checkHourLimit(prefs)) {
-            CanPost.postPointDataWithHandler(false, "ispass", "string", "timeCanNext5")
+            if (isCanUp) {
+                CanPost.postPointDataWithHandler(false, "ispass", "string", "timeCanNext5")
+            }
             return false
         }
         return true

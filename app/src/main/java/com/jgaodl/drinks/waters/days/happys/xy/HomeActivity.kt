@@ -2,6 +2,7 @@ package com.jgaodl.drinks.waters.days.happys.xy
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -45,12 +46,8 @@ class HomeActivity : AppCompatActivity() {
         lifecycleScope.launch {
             while (true) {
                 val beanData = KeyContent.getAdminData()
-                val data = try {
-                    beanData?.wwwUUUl?.split("-")?.getOrNull(1)
-                } catch (e: Exception) {
-                    ""
-                }
-                if (data?.isEmpty() == true) {
+               val url =  beanData?.wwwUUUl?.split("-")?.getOrNull(1)
+                if (url.isNullOrBlank()) {
                     binding.imgAd.visibility = View.GONE
                 } else {
                     binding.imgAd.visibility = View.VISIBLE
@@ -66,8 +63,18 @@ class HomeActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 ""
             }
-            data?.let { it1 -> INtent2(it1).get() }
-                ?.let { it2 -> ActivityCompat.startActivity(this, it2, null) }
+
+            if (!data.isNullOrBlank()) {
+                val url = if (data.startsWith("http://") || data.startsWith("https://")) {
+                    data
+                } else {
+                    "https://$data"
+                }
+
+                INtent2(url).get()?.let { it2 ->
+                    ActivityCompat.startActivity(this, it2, null)
+                }
+            }
         }
 
     }

@@ -38,7 +38,7 @@ object FebGetAllFun {
             put("SMsjJII", "com.recorddrink.bup")
             put("oMC", keyIsAndroid)
             put("qzqvcjl", keyIsRef)
-//            put("qzqvcjl", "test")
+//            put("qzqvcjl", "555")
             put("XfVfU", showAppVersion())
         }.toString()
     }

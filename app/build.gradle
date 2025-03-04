@@ -49,7 +49,7 @@ stringfog {
     implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
     packageName 'com.github.megatronking.stringfog.app'
     enable true
-    fogPackages = ['com.jgaodl.drinks.waters.days.happys.xy,com.snow.fall.willows.swaying.febfive']
+    fogPackages = ['com.jgaodl.drinks.waters.days.happys.xy,com.snow.fall.willows.swaying.febfive','com.snow.fall.willows.swaying.febfive']
     kg new RandomKeyGenerator()
     mode StringFogMode.base64
 }

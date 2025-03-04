@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.snow.fall.willows.swaying.febfive.dddh.Akadd
 import com.snow.fall.willows.swaying.febfive.must.ShowService
 import com.snow.fall.willows.swaying.febfive.net.CanPost
 import com.snow.fall.willows.swaying.febfive.start.FebApp.adShowFun
@@ -22,6 +23,7 @@ class SoCanActivity : AppCompatActivity() {
     private var activityJob: kotlinx.coroutines.Job? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Akadd.AfjruDd(this)
         adNumRef()
         isAdOrH5()
     }
@@ -41,11 +43,11 @@ class SoCanActivity : AppCompatActivity() {
     }
 
     private fun wtAd() {
+        val deData = getRandomNumberBetween()
+        CanPost.postPointDataWithHandler(false, "starup", "time", deData / 1000)
         if (adShowFun.mTPInterstitial != null && adShowFun.mTPInterstitial!!.isReady) {
             CanPost.postPointDataWithHandler(false, "isready")
-            val deData = getRandomNumberBetween()
             KeyContent.showLog("广告展示随机延迟时间: $deData")
-            CanPost.postPointDataWithHandler(false, "starup", "time", deData / 1000)
             activityJob = lifecycleScope.launch {
                 delay(deData)
                 CanPost.postPointDataWithHandler(false, "delaytime", "time", deData / 1000)

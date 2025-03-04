@@ -64,14 +64,14 @@ object FacyData {
 
     const val local_admin_json = """
 {
-    "canNext": false,
+    "canNext": true,
     "upIsGo": false,
-    "timeCanNext": "10-60-30-100-5-10-5",
+    "timeCanNext": "10-20-30-100-5-10-5",
     "canInform": "366C94B8A3DAC162BC34E2A27DE4F130x-3616318175247400-febfan",
     "canDelay": "2000-3000",
     "wwwTime":"10",
     "wwwPPPa":"com",
-    "wwwUUUl":"https://www.baidu.com-https://www.wanandroid.com/",
+    "wwwUUUl":"https://www.baidu.com-",
     "wwwCan":"10-2"
 }
     """

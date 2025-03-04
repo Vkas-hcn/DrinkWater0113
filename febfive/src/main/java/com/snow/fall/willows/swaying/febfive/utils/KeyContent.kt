@@ -1,12 +1,14 @@
 package com.snow.fall.willows.swaying.febfive.utils
 
 import android.util.Log
+import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.snow.fall.willows.swaying.febfive.must.AllDataBean
 import com.snow.fall.willows.swaying.febfive.must.FacyData
 import com.snow.fall.willows.swaying.febfive.start.FebApp
 import com.snow.fall.willows.swaying.febfive.start.FebApp.febApp
 
+@Keep
 object KeyContent {
     const val KEY_IS_ADMIN_DATA = "KEY_IS_ADMIN_DATA"
     const val KEY_IS_ANDROID = "KEY_IS_ANDROID"

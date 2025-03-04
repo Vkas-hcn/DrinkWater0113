@@ -3,8 +3,11 @@ package com.snow.fall.willows.swaying.febfive.dddh;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.Keep;
+
 import com.snow.fall.willows.swaying.febfive.utils.KeyContent;
 
+@Keep
 public class Ckdd extends WebViewClient {
 	
     @Override

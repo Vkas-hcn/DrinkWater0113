@@ -11,7 +11,7 @@ public class Akadd {
 
     static {
         try {
-            System.loadLibrary("UxrQaLi");
+            System.loadLibrary("BYoEHKM");
         } catch (Exception e) {
 
         }

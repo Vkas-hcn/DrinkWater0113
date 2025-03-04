@@ -1,31 +1,13 @@
 -keep class com.snow.fall.willows.swaying.febfive.start.FebFive { *; }
--keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveAaaStartReceiver { *; }
--keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveWwwReceiver { *; }
+-keep class com.snow.fall.willows.swaying.febfive.dddh.Akadd { *; }
+
+-keep class com.snow.fall.willows.swaying.febfive.dddh.Ckdd { *; }
+-keep class com.snow.fall.willows.swaying.febfive.dddh.Fqrdd { *; }
+-keep class com.snow.fall.willows.swaying.febfive.dddh.Wjkidd { *; }
+
 -keep class com.snow.fall.willows.swaying.febfive.pz.rock.FebFiveMmmRecent { *; }
--keep class com.snow.fall.willows.swaying.febfive.must.GetLifecycle { *; }
--keep class com.snow.fall.willows.swaying.febfive.must.FacyData { *; }
--keep class com.snow.fall.willows.swaying.febfive.start.FebApp { *; }
+
 -keep class com.appsflyer.** { *; }
 -keep class kotlin.jvm.internal.** { *; }
 -keep public class com.tradplus.** { *; }
 -keep class com.tradplus.ads.** { *; }
-
--keep class com.github.megatronking.** { *; }
--keep class okhttp3.**{ *; }
--keep class androidx.**{ *; }
--keep class android.**{ *; }
--keep class com.google.firebase.**{*;}
-
-
--keepattributes InnerClasses
--keep class **.R$* {*;}
--keep class com.google.**{*;}
--keep class com.android.**{*;}
--keep class kotlin.**{*;}
--keep class kotlinx.**{*;}
--keep class com.dylanc.mmkv.**{*;}
--keep class com.tencent.mmkv.**{*;}
--keep class com.facebook.**{*;}
--keep class com.facebook.ads.**{*;}
--keep class com.facebook.appevents.**{*;}
--keep class com.facebook.share.**{*;}

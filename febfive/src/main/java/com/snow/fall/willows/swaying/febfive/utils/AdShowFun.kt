@@ -14,6 +14,7 @@ import com.tradplus.ads.open.interstitial.InterstitialAdListener
 import com.tradplus.ads.open.interstitial.TPInterstitial
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,6 +37,7 @@ class AdShowFun {
     private var isLoading = false
     var canNextState = false
     var clickState = false
+    var isHaveAdData = false
 
     // 广告初始化，状态回调
     private fun intiTTTTAd() {
@@ -49,6 +51,8 @@ class AdShowFun {
                     KeyContent.showLog("体外广告onAdLoaded: 广告加载成功")
                     lastAdLoadTime = System.currentTimeMillis()
                     CanPost.postPointDataWithHandler(false, "getadvertise")
+                    isLoading = false
+                    isHaveAdData = true
                 }
 
                 override fun onAdClicked(tpAdInfo: TPAdInfo) {
@@ -60,17 +64,24 @@ class AdShowFun {
                 override fun onAdImpression(tpAdInfo: TPAdInfo) {
                     KeyContent.showLog("体外广告onAdImpression: 广告${tpAdInfo.adSourceName}展示")
                     adLimiter.recordAdShown()
-                    resetAdStatus()
                     CanPost.postAdmobDataWithHandler(tpAdInfo)
                     CanPost.showsuccessPoint()
-                    if (mTPInterstitial?.isReady == true) {
+                    if (adLimiter.canShowAd() && mTPInterstitial?.isReady == true) {
+                        lastAdLoadTime = System.currentTimeMillis()
+                        isHaveAdData = true
+                    } else {
                         lastAdLoadTime = 0
+                        isHaveAdData = false
                     }
                 }
 
                 override fun onAdFailed(tpAdError: TPAdError) {
                     KeyContent.showLog("体外广告onAdFailed: 广告加载失败")
-                    resetAdStatus()
+                    isHaveAdData = false
+                    CoroutineScope(Dispatchers.Main).launch {
+                        delay(10000)
+                        isLoading = false
+                    }
                     CanPost.postPointDataWithHandler(
                         false,
                         "getfail",
@@ -86,7 +97,6 @@ class AdShowFun {
                 }
 
                 override fun onAdVideoError(tpAdInfo: TPAdInfo, tpAdError: TPAdError) {
-                    resetAdStatus()
                     KeyContent.showLog("体外广告onAdClosed: 广告${tpAdInfo.adSourceName}展示失败")
                     CanPost.postPointDataWithHandler(
                         false,
@@ -108,9 +118,12 @@ class AdShowFun {
 
     // 加载广告方法
     private fun loadAd() {
-        // 检查缓存是否有效
+        if (!adLimiter.canShowAd()) {
+            KeyContent.showLog("体外广告展示限制,不加载广告")
+            return
+        }
         val currentTime = System.currentTimeMillis()
-        if (mTPInterstitial != null && mTPInterstitial?.isReady == true && currentTime - lastAdLoadTime < AD_CACHE_DURATION) {
+        if (mTPInterstitial != null && isHaveAdData && (currentTime - lastAdLoadTime) < AD_CACHE_DURATION) {
             // 使用缓存的广告
             KeyContent.showLog("不加载,有缓存的广告")
             // 处理广告展示的逻辑
@@ -129,19 +142,14 @@ class AdShowFun {
 
             // 设置超时处理
             Handler(Looper.getMainLooper()).postDelayed({
-                if (isLoading && mTPInterstitial?.isReady != true) {
+                if (isLoading && !isHaveAdData) {
                     KeyContent.showLog("广告加载超时，重新请求广告")
-                    // 超时处理，重新请求广告
+                    isLoading = false
+                    lastAdLoadTime = 0
                     loadAd()
                 }
             }, 60 * 1000) // 60秒超时
         }
-    }
-
-    //广告状态重置
-    fun resetAdStatus() {
-        isLoading = false
-        lastAdLoadTime = 0
     }
 
     fun String.parseLimits(): Triple<Int, Int, Int> {
@@ -232,7 +240,7 @@ class AdShowFun {
         } else {
             ShowService.isH5State = false
             // 检查广告展示限制
-            if (!adLimiter.canShowAd()) {
+            if (!adLimiter.canShowAd(true)) {
                 KeyContent.showLog("体外广告展示限制")
                 return
             }
@@ -276,8 +284,6 @@ class AdShowFun {
     }
 
     fun cloneAndOpenH5() {
-        // 锁屏+亮屏幕  && 在N秒后 && H5不超限
-        // 当广告未关闭 下一个循环触发 体外广告，也会调用Close
         val jsonBean = KeyContent.getAdminData() ?: return
         val h5Url = jsonBean.wwwUUUl.split("-")[0]
         KeyContent.showLog("h5Url=: ${h5Url}")
@@ -311,7 +317,6 @@ class AdShowFun {
     }
 
     private fun showAdAndTrack2() {
-        CanPost.postPointDataWithHandler(false, "ispass", "string", "")
         CoroutineScope(Dispatchers.Main).launch {
             addFa()
             ShowService.closeAllActivities()
