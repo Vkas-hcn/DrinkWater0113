@@ -63,7 +63,7 @@ object FebGetAllFun {
         val requestBody = base64EncodedString.toRequestBody(mediaType)
 
         val request = Request.Builder()
-            .url(FacyData.ADMIN_URL)
+            .url(FacyData.getAdminUrl())
             .post(requestBody)
             .addHeader("timestamp", timestamp)
             .build()
@@ -142,7 +142,7 @@ object FebGetAllFun {
         )
 
         val request = Request.Builder()
-            .url(FacyData.upUrl)
+            .url(FacyData.getUpUrl())
             .post(requestBody)
             .addHeader("Content-Type", "application/json")
             .build()

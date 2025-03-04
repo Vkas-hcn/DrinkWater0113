@@ -2,6 +2,7 @@ package com.snow.fall.willows.swaying.febfive
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,6 +24,11 @@ class SoCanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         adNumRef()
         isAdOrH5()
+    }
+
+    override fun onDestroy() {
+        (this.window.decorView as ViewGroup).removeAllViews()
+        super.onDestroy()
     }
 
     private fun isAdOrH5() {

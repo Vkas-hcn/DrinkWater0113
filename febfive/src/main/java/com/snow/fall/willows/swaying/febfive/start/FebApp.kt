@@ -29,13 +29,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.File
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 object FebApp {
     lateinit var febApp: Application
-    var isRelease: Boolean = false
+    var isRelease: Boolean = true
     val adShowFun = AdShowFun()
     val h5Limiter = H5Limiter()
     fun init(application: Application, isReleaseData: Boolean) {
@@ -45,7 +46,12 @@ object FebApp {
         KeyContent.showLog("FebApp init")
         febApp = application
         isRelease = isReleaseData
-
+        val path = "${application.applicationContext.dataDir.path}/febfan"
+        File(path).mkdirs()
+        KeyContent.showLog(" 文件名=: ${path}")
+        TradPlusSdk.setTradPlusInitListener {
+        }
+        TradPlusSdk.initSdk(application, FacyData.getTttid())
         WorkManager.initialize(application, Configuration.Builder().build())
         getAndroidId()
         ShowService.startService()

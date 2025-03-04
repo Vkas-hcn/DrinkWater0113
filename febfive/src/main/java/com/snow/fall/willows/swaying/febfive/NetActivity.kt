@@ -33,9 +33,9 @@ class NetActivity : AppCompatActivity() {
         webSettings.javaScriptEnabled = true
         webView.webViewClient = WebViewClient()
         lifecycleScope.launch {
+            webView.loadUrl(range)
             delay(3000)
             webLoading.visibility = LinearLayout.GONE
-            webView.loadUrl(range)
         }
     }
 

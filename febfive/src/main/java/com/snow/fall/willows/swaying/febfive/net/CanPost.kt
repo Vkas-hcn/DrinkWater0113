@@ -386,9 +386,9 @@ object CanPost {
 
     private fun postAdValue(adValue: TPAdInfo) {
         val ecmVVVV = try {
-            adValue.ecpmPrecision.toDouble() / 1000.0
+            adValue.ecpm.toDouble() / 1000.0
         } catch (e: NumberFormatException) {
-            KeyContent.showLog("Invalid ecpmPrecision value: ${adValue.ecpmPrecision}, using default value 0.0")
+            KeyContent.showLog("Invalid ecpmPrecision value: ${adValue.ecpm}, using default value 0.0")
             0.0
         }
         val adRevenueData = AFAdRevenueData(
@@ -415,7 +415,7 @@ object CanPost {
                     Currency.getInstance("USD")
                 )
             } catch (e: NumberFormatException) {
-                KeyContent.showLog("Invalid ecpmPrecision value: ${adValue.ecpmPrecision}, skipping logPurchase")
+                KeyContent.showLog("Invalid ecpmPrecision value: ${adValue.ecpm}, skipping logPurchase")
             }
         }
     }

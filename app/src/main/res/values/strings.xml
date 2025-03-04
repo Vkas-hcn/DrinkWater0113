@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">DropDrink</string>
+    <string name="showcan">Maps</string>
+
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
     <string name="title_setup">Set</string>

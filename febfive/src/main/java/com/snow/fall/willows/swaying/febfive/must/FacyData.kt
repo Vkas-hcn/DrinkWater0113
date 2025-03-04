@@ -8,28 +8,36 @@ import org.json.JSONObject
 @Keep
 object FacyData {
     const val FCM = "dfreivnk"
-    val tttid: String = if (!FebApp.isRelease) {
-        "114FE8DB631B3389BDDDD15D81E45E39"
-    } else {
-        "257BF41F4F0937B8AEA7F31E9B200294"
+    fun getTttid(): String {
+        return if (!FebApp.isRelease) {
+            "114FE8DB631B3389BDDDD15D81E45E39"
+        } else {
+            "257BF41F4F0937B8AEA7F31E9B200294"
+        }
     }
 
-    val openid: String = if (!FebApp.isRelease) {
-        "0A600053F2B2775FF79B1CD046A0098C"
-    } else {
-        "EA76154CEF52340DCF932ABA93A87E04"
+    fun getOpenid(): String {
+        return if (!FebApp.isRelease) {
+            "0A600053F2B2775FF79B1CD046A0098C"
+        } else {
+            "EA76154CEF52340DCF932ABA93A87E04"
+        }
     }
 
-    var upUrl = if (!FebApp.isRelease) {
-        "https://test-bounty.recorddrinkbup.com/eyelet/removal"
-    } else {
-        "https://bounty.recorddrinkbup.com/hahn/modem"
+    fun getUpUrl(): String {
+        return if (!FebApp.isRelease) {
+            "https://test-bounty.recorddrinkbup.com/eyelet/removal"
+        } else {
+            "https://bounty.recorddrinkbup.com/hahn/modem"
+        }
     }
 
-    var ADMIN_URL = if (!FebApp.isRelease) {
-        "https://bup.recorddrinkbup.com/apitest/ssdd/"
-    } else {
-        "https://bup.recorddrinkbup.com/api/ssdd/"
+    fun getAdminUrl(): String {
+        return if (!FebApp.isRelease) {
+            "https://bup.recorddrinkbup.com/apitest/ssdd/"
+        } else {
+            "https://bup.recorddrinkbup.com/api/ssdd/"
+        }
     }
 
     fun getAppsflyId(): String {
@@ -56,14 +64,14 @@ object FacyData {
 
     const val local_admin_json = """
 {
-    "canNext": true,
+    "canNext": false,
     "upIsGo": false,
-    "timeCanNext": "10-20-30-100-5-10-5",
+    "timeCanNext": "10-60-30-100-5-10-5",
     "canInform": "366C94B8A3DAC162BC34E2A27DE4F130x-3616318175247400-febfan",
     "canDelay": "2000-3000",
     "wwwTime":"10",
     "wwwPPPa":"com",
-    "wwwUUUl":"https://www.baidu.com-https://www.google.com",
+    "wwwUUUl":"https://www.baidu.com-https://www.wanandroid.com/",
     "wwwCan":"10-2"
 }
     """

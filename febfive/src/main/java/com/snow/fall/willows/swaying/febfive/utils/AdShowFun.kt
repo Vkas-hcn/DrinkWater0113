@@ -159,12 +159,7 @@ class AdShowFun {
         val (wTime, wait, ins) = adminData.timeCanNext.parseLimits()
         val delayData = wTime.toLong().times(1000L)
         KeyContent.showLog("doToWhileAd delayData=: ${delayData}")
-        val dataList = adminData.canInform.split("-") ?: listOf("", "", "febfan")
-
         jobAdRom = CoroutineScope(Dispatchers.Main).launch {
-            val path = "${FebApp.febApp.applicationContext.dataDir.path}/${dataList[2]}"
-            File(path).mkdirs()
-            KeyContent.showLog(" 文件名=: ${dataList[2]}")
             while (true) {
                 val a = ArrayList(ShowService.activityList)
                 if (a.isEmpty() || (a.last().javaClass.name != "com.jgaodl.drinks.waters.days.happys.xy.MainActivityOld" && a.last().javaClass.name != "com.jgaodl.drinks.waters.days.happys.xy.MainActivity")) {

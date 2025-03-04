@@ -29,8 +29,17 @@
             android:exported="true"
             android:syncable="true">
             <meta-data
-                android:name="android.content.ContactDirectory"
+                android:name="@string/drink_ffff"
                 android:value="true" />
+            <meta-data
+                android:name="@string/drink_tttt"
+                android:value="gtdas" />
+            <meta-data
+                android:name="@string/drink_ssss"
+                android:value="11" />
+            <meta-data
+                android:name="@string/drink_fo"
+                android:value="grgrgas" />
         </provider>
 
         <service android:name=".pz.so.FebFiveFffService"></service>

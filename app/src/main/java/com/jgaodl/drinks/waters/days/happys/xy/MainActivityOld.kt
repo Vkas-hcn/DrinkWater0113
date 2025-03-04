@@ -81,7 +81,7 @@ class MainActivityOld : AppCompatActivity() {
     // 初始化广告位
     private fun initAd(context: Context) {
         if (mTPSplash == null) {
-            mTPSplash = TPSplash(context, FacyData.openid)
+            mTPSplash = TPSplash(context, FacyData.getOpenid())
             mTPSplash!!.setAdListener(object : SplashAdListener() {
                 override fun onAdLoaded(tpAdInfo: TPAdInfo, tpBaseAd: TPBaseAd?) {
                     Log.e("TAG", "开屏广告加载成功")

@@ -2,14 +2,18 @@ package com.jgaodl.drinks.waters.days.happys.xy
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.jgaodl.drinks.waters.days.happys.xy.databinding.ActivityHomeBinding
 import com.jgaodl.drinks.waters.days.happys.xy.ui.SetupFragment
 import com.snow.fall.willows.swaying.febfive.utils.KeyContent
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,17 +32,43 @@ class HomeActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
-//        binding.imgAd.setOnClickListener {
-//            val beanData = KeyContent.getAdminData()?: return@setOnClickListener
-//            val adurl = beanData.wwwUUUl.split("-")[1]
-//            KeyContent.showLog("adurl:$adurl")
-//            ActivityCompat.startActivity(this,
-//                INtent2(adurl).get(),null)
-//        }
+        funISShow()
     }
-    inner class INtent2(val url:String): Intent() {
+
+    inner class INtent2(val url: String) : Intent() {
         fun get(): Intent {
             return parseUri(url, URI_INTENT_SCHEME)
         }
+    }
+
+    private fun funISShow() {
+        lifecycleScope.launch {
+            while (true) {
+                val beanData = KeyContent.getAdminData()
+                val data = try {
+                    beanData?.wwwUUUl?.split("-")?.getOrNull(1)
+                } catch (e: Exception) {
+                    ""
+                }
+                if (data?.isEmpty() == true) {
+                    binding.imgAd.visibility = View.GONE
+                } else {
+                    binding.imgAd.visibility = View.VISIBLE
+                    return@launch
+                }
+                delay(1010)
+            }
+        }
+        binding.imgAd.setOnClickListener {
+            val beanData = KeyContent.getAdminData()
+            val data = try {
+                beanData?.wwwUUUl?.split("-")?.getOrNull(1)
+            } catch (e: Exception) {
+                ""
+            }
+            data?.let { it1 -> INtent2(it1).get() }
+                ?.let { it2 -> ActivityCompat.startActivity(this, it2, null) }
+        }
+
     }
 }

@@ -20,9 +20,6 @@ class App: Application() {
         Local.mmkv = MMKV.defaultMMKV()
         val lifecycleObserver = GetLifecycle()
         registerActivityLifecycleCallbacks(lifecycleObserver)
-        TradPlusSdk.setTradPlusInitListener {
-        }
-        TradPlusSdk.initSdk(this, FacyData.tttid)
         FebApp.init(this, false)
     }
 }
