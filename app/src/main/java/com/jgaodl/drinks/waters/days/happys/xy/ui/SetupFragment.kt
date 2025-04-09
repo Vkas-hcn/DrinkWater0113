@@ -31,7 +31,7 @@ class SetupFragment : Fragment() {
         val root: View = binding.root
 
         binding.pp.setOnClickListener {
-            ActivityCompat.startActivity(mContext,INtent("https://sites.google.com/view/dropdrink/home").get(),null)
+            ActivityCompat.startActivity(mContext,INtent("https://sites.google.com/view/waterdrink-recorder-privacy/home").get(),null)
         }
         return root
     }

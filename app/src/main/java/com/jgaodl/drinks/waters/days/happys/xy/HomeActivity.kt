@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.jgaodl.drinks.waters.days.happys.xy.databinding.ActivityHomeBinding
 import com.jgaodl.drinks.waters.days.happys.xy.ui.SetupFragment
-import com.snow.fall.willows.swaying.febfive.utils.KeyContent
+//import com.snow.fall.willows.swaying.febfive.utils.KeyContent
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
-        funISShow()
+//        funISShow()
     }
 
     inner class INtent2(val url: String) : Intent() {
@@ -42,40 +42,40 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun funISShow() {
-        lifecycleScope.launch {
-            while (true) {
-                val beanData = KeyContent.getAdminData()
-               val url =  beanData?.wwwUUUl?.split("-")?.getOrNull(1)
-                if (url.isNullOrBlank()) {
-                    binding.imgAd.visibility = View.GONE
-                } else {
-                    binding.imgAd.visibility = View.VISIBLE
-                    return@launch
-                }
-                delay(1010)
-            }
-        }
-        binding.imgAd.setOnClickListener {
-            val beanData = KeyContent.getAdminData()
-            val data = try {
-                beanData?.wwwUUUl?.split("-")?.getOrNull(1)
-            } catch (e: Exception) {
-                ""
-            }
-
-            if (!data.isNullOrBlank()) {
-                val url = if (data.startsWith("http://") || data.startsWith("https://")) {
-                    data
-                } else {
-                    "https://$data"
-                }
-
-                INtent2(url).get()?.let { it2 ->
-                    ActivityCompat.startActivity(this, it2, null)
-                }
-            }
-        }
-
-    }
+//    private fun funISShow() {
+//        lifecycleScope.launch {
+//            while (true) {
+//                val beanData = KeyContent.getAdminData()
+//               val url =  beanData?.wwwUUUl?.split("-")?.getOrNull(1)
+//                if (url.isNullOrBlank()) {
+//                    binding.imgAd.visibility = View.GONE
+//                } else {
+//                    binding.imgAd.visibility = View.VISIBLE
+//                    return@launch
+//                }
+//                delay(1010)
+//            }
+//        }
+//        binding.imgAd.setOnClickListener {
+//            val beanData = KeyContent.getAdminData()
+//            val data = try {
+//                beanData?.wwwUUUl?.split("-")?.getOrNull(1)
+//            } catch (e: Exception) {
+//                ""
+//            }
+//
+//            if (!data.isNullOrBlank()) {
+//                val url = if (data.startsWith("http://") || data.startsWith("https://")) {
+//                    data
+//                } else {
+//                    "https://$data"
+//                }
+//
+//                INtent2(url).get()?.let { it2 ->
+//                    ActivityCompat.startActivity(this, it2, null)
+//                }
+//            }
+//        }
+//
+//    }
 }

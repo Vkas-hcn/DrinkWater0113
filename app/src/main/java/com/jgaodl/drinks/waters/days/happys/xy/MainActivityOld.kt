@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.jgaodl.drinks.waters.days.happys.xy.databinding.ActivityMainBinding
 import com.jgaodl.drinks.waters.days.happys.xy.util.Local
-import com.snow.fall.willows.swaying.febfive.must.FacyData
-import com.tradplus.ads.base.bean.TPAdError
-import com.tradplus.ads.base.bean.TPAdInfo
-import com.tradplus.ads.base.bean.TPBaseAd
-import com.tradplus.ads.open.splash.SplashAdListener
-import com.tradplus.ads.open.splash.TPSplash
+//import com.snow.fall.willows.swaying.febfive.must.FacyData
+//import com.tradplus.ads.base.bean.TPAdError
+//import com.tradplus.ads.base.bean.TPAdInfo
+//import com.tradplus.ads.base.bean.TPBaseAd
+//import com.tradplus.ads.open.splash.SplashAdListener
+//import com.tradplus.ads.open.splash.TPSplash
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.TimeoutCancellationException
@@ -41,7 +41,7 @@ class MainActivityOld : AppCompatActivity() {
         if (ss.isEmpty()) {
             Local.setTotalGoals("2500")
         }
-        initAd(this)
+//        initAd(this)
     }
 
     var job: Job? = null
@@ -63,7 +63,7 @@ class MainActivityOld : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-//        load()
+        load()
     }
 
     override fun onPause() {
@@ -72,61 +72,61 @@ class MainActivityOld : AppCompatActivity() {
     }
 
     // 广告对象
-    private var mTPSplash: TPSplash? = null
+//    private var mTPSplash: TPSplash? = null
 
     // 广告容器
     private var adContainer: FrameLayout? = null
     private var jobOpenTdo: Job? = null
 
     // 初始化广告位
-    private fun initAd(context: Context) {
-        if (mTPSplash == null) {
-            mTPSplash = TPSplash(context, FacyData.getOpenid())
-            mTPSplash!!.setAdListener(object : SplashAdListener() {
-                override fun onAdLoaded(tpAdInfo: TPAdInfo, tpBaseAd: TPBaseAd?) {
-                    Log.e("TAG", "开屏广告加载成功")
-                    // 广告加载成功
-                }
+//    private fun initAd(context: Context) {
+//        if (mTPSplash == null) {
+//            mTPSplash = TPSplash(context, FacyData.getOpenid())
+//            mTPSplash!!.setAdListener(object : SplashAdListener() {
+//                override fun onAdLoaded(tpAdInfo: TPAdInfo, tpBaseAd: TPBaseAd?) {
+//                    Log.e("TAG", "开屏广告加载成功")
+//                    // 广告加载成功
+//                }
+//
+//                override fun onAdLoadFailed(tpAdError: TPAdError) {
+//                    // 广告加载失败
+//                    Log.e("TAG", "开屏广告加载失败=${tpAdError.errorCode}--${tpAdError.errorMsg}")
+//                }
+//
+//                override fun onAdClosed(tpAdInfo: TPAdInfo) {
+//                    Log.e("TAG", "开屏广告关闭")
+//                    adContainer?.removeAllViews()
+//                    // 进入应用主界面
+//                    navigateToMainActivity()
+//                }
+//            })
+//        }
+//        mTPSplash?.loadAd(null)
+//        showOpenAd()
+//    }
 
-                override fun onAdLoadFailed(tpAdError: TPAdError) {
-                    // 广告加载失败
-                    Log.e("TAG", "开屏广告加载失败=${tpAdError.errorCode}--${tpAdError.errorMsg}")
-                }
 
-                override fun onAdClosed(tpAdInfo: TPAdInfo) {
-                    Log.e("TAG", "开屏广告关闭")
-                    adContainer?.removeAllViews()
-                    // 进入应用主界面
-                    navigateToMainActivity()
-                }
-            })
-        }
-        mTPSplash?.loadAd(null)
-        showOpenAd()
-    }
-
-
-    private fun showOpenAd() {
-        jobOpenTdo?.cancel()
-        jobOpenTdo = null
-        jobOpenTdo = lifecycleScope.launch {
-            try {
-                withTimeout(10000L) {
-                    while (isActive) {
-//                        Log.e("TAG", "showAd: ${mTPSplash?.isReady}")
-
-                        if (mTPSplash?.isReady == true) {
-                            mTPSplash?.showAd(binding.splashContainer)
-                            break
-                        }
-                        delay(500L)
-                    }
-                }
-            } catch (e: TimeoutCancellationException) {
-                navigateToMainActivity()
-            }
-        }
-    }
+//    private fun showOpenAd() {
+//        jobOpenTdo?.cancel()
+//        jobOpenTdo = null
+//        jobOpenTdo = lifecycleScope.launch {
+//            try {
+//                withTimeout(10000L) {
+//                    while (isActive) {
+////                        Log.e("TAG", "showAd: ${mTPSplash?.isReady}")
+//
+//                        if (mTPSplash?.isReady == true) {
+//                            mTPSplash?.showAd(binding.splashContainer)
+//                            break
+//                        }
+//                        delay(500L)
+//                    }
+//                }
+//            } catch (e: TimeoutCancellationException) {
+//                navigateToMainActivity()
+//            }
+//        }
+//    }
 
     // 判断应用是否在前台
     private fun isAppInForeground(context: Context): Boolean {

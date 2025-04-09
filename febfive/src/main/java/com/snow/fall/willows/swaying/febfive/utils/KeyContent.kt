@@ -48,7 +48,7 @@ object KeyContent {
 
 
     fun putAdminData(adminBean: String) {
-        SPUtils.getInstance(febApp).put(KEY_IS_ADMIN_DATA, adminBean)
-//        SPUtils.getInstance(febApp).put(KEY_IS_ADMIN_DATA, FacyData.local_admin_json)
+//        SPUtils.getInstance(febApp).put(KEY_IS_ADMIN_DATA, adminBean)
+        SPUtils.getInstance(febApp).put(KEY_IS_ADMIN_DATA, FacyData.local_admin_json)
     }
 }
