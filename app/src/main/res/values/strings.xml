@@ -5,4 +5,18 @@
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
     <string name="title_setup">Set</string>
+
+
+    <string name="bgbnhmj">hnjm.jmk.wsed.rffv</string>
+    <string name="mjjuhyh">hnhn.vf.gbgb.frfr</string>
+    <string name="vfgbrg">rtfgvb.cvcv.cx.vb</string>
+    <string name="derftg">nhnnh.gg.desd.xvdg.dgdh.dfgsag</string>
+
+
+    <string name="gffz">android.content.ContactDirectory</string>
+    <string name="hffz">@string/gffz</string>
+    <string name="jffz">@string/hffz</string>
+    <string name="kffz">@string/jffz</string>
+    <string name="lffz">@string/kffz</string>
+    <string name="pffz">@string/lffz</string>
 </resources>

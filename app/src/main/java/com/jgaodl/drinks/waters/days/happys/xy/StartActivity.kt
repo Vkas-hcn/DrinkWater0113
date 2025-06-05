@@ -2,6 +2,7 @@ package com.jgaodl.drinks.waters.days.happys.xy
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 
 import com.jgaodl.drinks.waters.days.happys.xy.databinding.ActivityStartBinding
@@ -31,7 +32,10 @@ class StartActivity : AppCompatActivity() {
                 Local.setTotalGoals(txt)
                 Local.setIsFirst()
                 startActivity(Intent(this,HomeActivity::class.java))
+                finish()
             }
+        }
+        onBackPressedDispatcher.addCallback {
         }
     }
 

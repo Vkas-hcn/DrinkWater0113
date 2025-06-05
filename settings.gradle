@@ -66,4 +66,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "DrinkWater0113"
 include ':app'
-//include ':febfive'

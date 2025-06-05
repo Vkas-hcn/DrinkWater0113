@@ -57,7 +57,7 @@ class MainActivityOld : AppCompatActivity() {
             } else {
                 startActivity(Intent(this@MainActivityOld, StartActivity::class.java))
             }
-
+            finish()
         }
     }
 
